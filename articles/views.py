@@ -17,8 +17,8 @@ def new(request):
 
 def create(request):
     # 저장 로직
-    title = request.GET.get('title')
-    content = request.GET.get('content')
+    title = request.POST.get('title')
+    content = request.POST.get('content')
     article = Article.objects.create(title=title, content=content)
     article.save()
     context = {
@@ -49,7 +49,7 @@ def edit(request,article_pk):
 
 def update(request,article_pk):
     article = Article.objects.get(pk=article_pk)
-    article.title = request.GET.get('title')
-    article.content = request.GET.get('content')
+    article.title = request.POST.get('title')
+    article.content = request.POST.get('content')
     article.save()
     return redirect('articles:detail', article.pk)
